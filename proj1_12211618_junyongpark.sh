@@ -95,7 +95,7 @@ do
       s/Oct/10/g;
       s/Nov/11/g;
       s/Dec/12/g' u.item > item.tmp
-      sed -Ee 's/([0-9]+)-([0-9]+ )-([0-9]+)/\3\2\1/g' item.tmp | tail -n 10
+      cat item.tmp | sed -E 's/([0-9]{2})-([0-9]{2})-([0-9]{4})/\3\2\1/g' | tail -n 10
       rm -rf item.tmp
       echo
       ;;
@@ -161,6 +161,7 @@ do
       IFS=$pre_ifs
       ;;
     "Exit")
+      echo "Bye!"
       break
       ;;
   esac
